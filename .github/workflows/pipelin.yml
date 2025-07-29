@@ -8,5 +8,5 @@ jobs:
     greet:
         runs-on: ubuntu-latest
         steps: 
-          -name: print "Hello Enoch"
-          run: echo "Hello Enoch"
+          - name: print "Hello Enoch"
+            run: echo "Hello Enoch"
