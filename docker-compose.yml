@@ -1,0 +1,46 @@
+services:
+  postgres:
+    image: postgres:15
+    environment: 
+      POSTGRES_USER: user 
+      POSTGRES_PASSWORD: password
+      POSRGRES_DB: microdemo
+    volumes: 
+      - pgdata:var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  pgadmin: 
+    image: dpage/pgadmin4
+    
+    environment: 
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports: 
+      - "5050:80"
+    depends_on: 
+      - postgres
+    volumes:
+      - pgadmin_data:var/lib/pgadmin
+    
+  user-service: 
+    build: ./user-service 
+    depends_on:
+      - postgres
+    ports:
+      - "3001:3001"
+
+  products-service:
+    build:  ./products-service
+    depends_on: 
+      - postgres
+    ports: 
+      - "3002:3002"
+      
+  frontend:
+    build: ./frontend
+    ports: 
+      - "8080:8080"
+volumes:
+  pgdata:
+  pgadmin_data:
