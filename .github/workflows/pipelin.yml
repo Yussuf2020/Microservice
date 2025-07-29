@@ -1,0 +1,12 @@
+name: microservice CI/CD
+
+on: 
+    push: 
+      branches: [ "main"]
+
+jobs: 
+    greet:
+        runs-on: ubuntu-latest
+        steps: 
+          -name: print "Hello Enoch"
+          run: echo "Hello Enoch"
