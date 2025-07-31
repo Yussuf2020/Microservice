@@ -11,7 +11,7 @@ app.get('/api/products',(req,res)=>{
         {id:1,name:'Spagetti',price:50000},
         {id:2,name:'Desktop',price:2500},
         {id:3,name:'Phone',price:900},
-        {id:4,name:'Tv',price:3000},
+        {id:4,name:'Gotv',price:2000000000},
     ]
     res.status(200).json({products})
 })
