@@ -21,3 +21,17 @@ jobs:
             run: |
                docker build -t ${{ vars.DOCKERHUB_USERNAME }}/ndubuisi .
                docker push ${{ vars.DOCKERHUB_USERNAME }}/ndubuisi
+    deploy: 
+      needs: build
+      runs-on: ubuntu-latest
+      steps:
+        - name: Deploy on our server
+          uses: apple/ssh-action@master 
+          with: 
+            host:  ${{ secrets.EC2_HOST_SERVER }}
+            username:  ${{ serets.EC2_USERNAME}}
+            key:  ${{ secrets.EC2_PRIVATE_KEY }}
+            script: 
+              sudo docker pull ${{ vars.DOCKERHUB_USERNAME}}/ndubuisi
+              sudo docker rm -f ida
+              sudo docker run --name ida -p 3000:3000 -d harjy/ndubuisi
