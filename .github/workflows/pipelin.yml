@@ -3,6 +3,7 @@ name: microservice CI/CD
 on: 
     push: 
       branches: [ "main"]
+    workflow_dispatch:
 
 jobs: 
     build:
@@ -29,7 +30,7 @@ jobs:
           uses: apple/ssh-action@master 
           with: 
             host:  ${{ secrets.EC2_HOST_SERVER }}
-            username:  ${{ serets.EC2_USERNAME}}
+            username:  ${{secrets.EC2_USERNAME }}
             key:  ${{ secrets.EC2_PRIVATE_KEY }}
             script: 
               sudo docker pull ${{ vars.DOCKERHUB_USERNAME}}/ndubuisi
