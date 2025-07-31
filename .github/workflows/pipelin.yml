@@ -27,7 +27,7 @@ jobs:
       runs-on: ubuntu-latest
       steps:
       - name: Deploy on our server
-        uses: apple/ssh-action@master 
+        uses: appleboy/ssh-action@master 
         with: 
           host:  ${{secrets.EC2_HOST_SERVER}}
           username: ${{secrets.EC2_USERNAME}}
