@@ -34,5 +34,5 @@ jobs:
           key:  ${{secrets.EC2_PRIVATE_KEY}}
           script: |
             sudo docker pull ${{ vars.DOCKERHUB_USERNAME}}/ndubuisi
-            sudo docker rm -f ida
-            sudo docker run --name ida -p 3000:3000 -d  ${{ vars.DOCKERHUB_USERNAME}}/ndubuisi
+            sudo docker rm -f Pipeline
+            sudo docker run --name Pipeline -p 3000:3000 -d  ${{ vars.DOCKERHUB_USERNAME}}/ndubuisi
